@@ -1,0 +1,6 @@
+flask
+flask-cors
+google-cloud-vision
+numpy
+opencv-python-headless
+Pillow
