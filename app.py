@@ -65,13 +65,13 @@ def analyze_image(image_path):
         result["passed"].append("1. Not a family photo")
 
     # 2. Check Passport Type Photo (Aspect Ratio & Face Size)
-    aspect_ratio = round(img_width / img_height, 2)
+    # aspect_ratio = round(img_width / img_height, 2)
 
-    if not (0.99 <= aspect_ratio <= 1.01 or 1.3 <= aspect_ratio <= 1.35):
-        result["status"] = "FAIL"
-        result["failed"].append("2. Passport type photo (Invalid aspect ratio)")
-    else:
-        result["passed"].append("2. Passport type photo (Valid aspect ratio)")
+    # if not (0.99 <= aspect_ratio <= 1.01 or 1.3 <= aspect_ratio <= 1.35):
+    #     result["status"] = "FAIL"
+    #     result["failed"].append("2. Passport type photo (Invalid aspect ratio)")
+    # else:
+    #     result["passed"].append("2. Passport type photo (Valid aspect ratio)")
 
     # 3. Check Face Visibility (Face must be detected)
     if not response.face_annotations:
@@ -88,7 +88,7 @@ def analyze_image(image_path):
     face_height = y2 - y1
 
     face_ratio = (face_height / img_height) * 100
-    if face_ratio < 50 or face_ratio > 70:
+    if face_ratio < 40 or face_ratio > 85:
         result["status"] = "FAIL"
         result["failed"].append(f"2. Passport type photo (Face too small or too large, covers {face_ratio:.2f}% of image)")
     else:
